@@ -1,0 +1,43 @@
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* Merge(ListNode* pHead1, ListNode* pHead2) {
+        vector<int> num;
+        while (pHead1 != NULL)
+        {
+            num.push_back(pHead1->val);
+            pHead1 = pHead1->next;
+        }
+        while (pHead2 != NULL)
+        {
+            num.push_back(pHead2->val);
+            pHead2 = pHead2->next;
+        }
+        sort(num.begin(), num.end());
+        struct ListNode* res = new struct ListNode(num[0]);
+        struct ListNode* head = new struct ListNode(num[0]);
+        head = res;
+        for(int i = 0; i<num.size(); i++)
+        {
+            struct ListNode* temp = new struct ListNode(0);
+            res->val = num[i];
+            if (i == num.size()-1)
+            {
+                res -> next = NULL;
+            }
+            else
+            {
+                res->next = temp;
+                res = res->next;
+            }
+        }
+        return head;
+    }
+};
